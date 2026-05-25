@@ -1,0 +1,107 @@
+version: '3.9'
+
+services:
+  # ---- Application ----
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: infracore_app
+    restart: unless-stopped
+    ports:
+      - '${PORT:-5000}:5000'
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/infracore
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    env_file:
+      - .env
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - app_logs:/app/src/logs
+      - app_uploads:/app/src/uploads
+    networks:
+      - infracore_net
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:5000/api/v1/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ---- MongoDB ----
+  mongo:
+    image: mongo:7.0
+    container_name: infracore_mongo
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: infracore
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - infracore_net
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # ---- Redis ----
+  redis:
+    image: redis:7.2-alpine
+    container_name: infracore_redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    command: redis-server --save 60 1 --loglevel warning --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    networks:
+      - infracore_net
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---- Mongo Express (dev admin UI) ----
+  mongo-express:
+    image: mongo-express:latest
+    container_name: infracore_mongo_express
+    restart: unless-stopped
+    ports:
+      - '8081:8081'
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: password
+    depends_on:
+      - mongo
+    networks:
+      - infracore_net
+    profiles:
+      - dev
+
+volumes:
+  mongo_data:
+    driver: local
+  redis_data:
+    driver: local
+  app_logs:
+    driver: local
+  app_uploads:
+    driver: local
+
+networks:
+  infracore_net:
+    driver: bridge

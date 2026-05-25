@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+coverage
+.git
+.gitignore
+.env*
+!.env.example
+src/logs
+src/uploads
+dist
+build
+.husky
+.eslintrc.js
+.prettierrc
+jest.config.js
+README.md
+docker-compose.yml
