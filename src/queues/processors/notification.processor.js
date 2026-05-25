@@ -1,5 +1,3 @@
-'use strict';
-
 const logger = require('../../config/logger');
 
 const NOTIFICATION_JOB_TYPES = Object.freeze({

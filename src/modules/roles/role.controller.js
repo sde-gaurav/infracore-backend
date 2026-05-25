@@ -1,9 +1,8 @@
-'use strict';
-
-const roleService = require('./role.service');
+const { ROLE_MESSAGES } = require('../../constants/messages.constant');
 const ApiResponse = require('../../core/ApiResponse');
 const asyncHandler = require('../../core/asyncHandler');
-const { ROLE_MESSAGES } = require('../../constants/messages.constant');
+
+const roleService = require('./role.service');
 
 /**
  * @swagger

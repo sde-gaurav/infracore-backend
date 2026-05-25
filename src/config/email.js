@@ -1,9 +1,8 @@
-'use strict';
-
 const nodemailer = require('nodemailer');
 
-const config = require('./index');
 const logger = require('./logger');
+
+const config = require('./index');
 
 let transporter;
 

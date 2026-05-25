@@ -1,9 +1,8 @@
-'use strict';
-
 const { Server } = require('socket.io');
 
 const config = require('../config');
 const logger = require('../config/logger');
+
 const socketAuthMiddleware = require('./socket.auth');
 const { registerSocketHandlers } = require('./socket.handler');
 

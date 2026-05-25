@@ -1,8 +1,7 @@
-'use strict';
+const { ROLE_MESSAGES } = require('../../constants/messages.constant');
+const ApiError = require('../../core/ApiError');
 
 const roleRepository = require('./role.repository');
-const ApiError = require('../../core/ApiError');
-const { ROLE_MESSAGES } = require('../../constants/messages.constant');
 
 const getRoles = () => roleRepository.findAllActive();
 

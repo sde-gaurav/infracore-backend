@@ -1,22 +1,20 @@
-'use strict';
-
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
 const compression = require('compression');
-const mongoSanitize = require('express-mongo-sanitize');
-const xssClean = require('xss-clean');
-const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const express = require('express');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const hpp = require('hpp');
 const swaggerUi = require('swagger-ui-express');
+const xssClean = require('xss-clean');
 
 const config = require('./config');
 const corsOptions = require('./config/cors');
 const swaggerSpec = require('./config/swagger');
-const { requestId, httpLogger } = require('./middlewares/requestLogger.middleware');
-const { globalLimiter } = require('./middlewares/rateLimiter.middleware');
 const { globalErrorHandler } = require('./middlewares/error.middleware');
 const notFound = require('./middlewares/notFound.middleware');
+const { globalLimiter } = require('./middlewares/rateLimiter.middleware');
+const { requestId, httpLogger } = require('./middlewares/requestLogger.middleware');
 const apiRouter = require('./routes');
 
 const app = express();
@@ -52,9 +50,9 @@ app.use(compression());
 // =========================================================
 // SECURITY — INPUT SANITISATION
 // =========================================================
-app.use(mongoSanitize());   // Strip $ / . from keys — prevents NoSQL injection
-app.use(xssClean());        // Sanitise HTML tags in inputs
-app.use(hpp({               // Prevent HTTP Parameter Pollution
+app.use(mongoSanitize()); // Strip $ / . from keys — prevents NoSQL injection
+app.use(xssClean()); // Sanitise HTML tags in inputs
+app.use(hpp({ // Prevent HTTP Parameter Pollution
   whitelist: ['sort', 'fields', 'page', 'limit'],
 }));
 

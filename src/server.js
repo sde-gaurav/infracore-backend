@@ -1,16 +1,14 @@
-'use strict';
-
 const http = require('http');
 
 const app = require('./app');
 const config = require('./config');
+const { verifyTransporter } = require('./config/email');
 const logger = require('./config/logger');
 const { connect: connectMongo, disconnect: disconnectMongo } = require('./database/mongoose');
 const { getClient: getRedisClient, disconnect: disconnectRedis } = require('./database/redis');
-const { initSocket } = require('./sockets');
-const { startAllWorkers, stopAllWorkers } = require('./queues');
 const { startAllJobs, stopAllJobs } = require('./jobs');
-const { verifyTransporter } = require('./config/email');
+const { startAllWorkers, stopAllWorkers } = require('./queues');
+const { initSocket } = require('./sockets');
 
 const server = http.createServer(app);
 
@@ -86,7 +84,6 @@ const bootstrap = async () => {
       logger.error(`Server error: ${err.message}`);
       process.exit(1);
     });
-
   } catch (err) {
     logger.error(`Bootstrap failed: ${err.message}`);
     process.exit(1);

@@ -1,7 +1,5 @@
-'use strict';
-
-const { getClient } = require('../database/redis');
 const logger = require('../config/logger');
+const { getClient } = require('../database/redis');
 
 const DEFAULT_TTL = 3600; // 1 hour
 

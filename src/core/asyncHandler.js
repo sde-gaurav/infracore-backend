@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Wraps an async Express route handler and forwards any rejection to next().
  * Eliminates try/catch boilerplate in every controller method.

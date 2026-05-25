@@ -1,18 +1,18 @@
-'use strict';
-
 const crypto = require('crypto');
 
-const authRepository = require('./auth.repository');
+const { v4: uuidv4 } = require('uuid');
+
+const { storeRefreshToken, revokeRefreshToken, revokeAllUserTokens, blockAccessToken, trackTokenFamily, getTokenFamily, invalidateTokenFamily } = require('../../cache/token.cache');
+const { AUTH_MESSAGES } = require('../../constants/messages.constant');
+const ApiError = require('../../core/ApiError');
+const userEvents = require('../../events/user.event');
+const emailQueue = require('../../queues/email.queue');
 const { hash, compare } = require('../../utils/bcrypt.util');
 const { generateAccessToken, generateRefreshToken, verifyRefreshToken } = require('../../utils/jwt.util');
-const { generateSecureToken, hashToken, tokenExpiry } = require('../../utils/token.util');
 const { generateOTP, getOTPExpiry, isOTPExpired } = require('../../utils/otp.util');
-const { storeRefreshToken, revokeRefreshToken, revokeAllUserTokens, blockAccessToken, trackTokenFamily, getTokenFamily, invalidateTokenFamily } = require('../../cache/token.cache');
-const ApiError = require('../../core/ApiError');
-const { AUTH_MESSAGES } = require('../../constants/messages.constant');
-const emailQueue = require('../../queues/email.queue');
-const userEvents = require('../../events/user.event');
-const { v4: uuidv4 } = require('uuid');
+const { generateSecureToken, hashToken, tokenExpiry } = require('../../utils/token.util');
+
+const authRepository = require('./auth.repository');
 
 const issueTokenPair = async (user, meta = {}) => {
   const jti = uuidv4();

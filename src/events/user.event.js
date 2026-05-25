@@ -1,7 +1,6 @@
-'use strict';
+const logger = require('../config/logger');
 
 const emitter = require('./index');
-const logger = require('../config/logger');
 
 const USER_EVENTS = Object.freeze({
   REGISTERED: 'user:registered',

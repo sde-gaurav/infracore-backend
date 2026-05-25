@@ -1,7 +1,5 @@
-'use strict';
-
-const Token = require('../models/Token.model');
 const logger = require('../config/logger');
+const Token = require('../models/Token.model');
 
 const cleanupExpiredTokens = async () => {
   try {

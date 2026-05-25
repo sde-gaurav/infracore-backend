@@ -1,11 +1,9 @@
-'use strict';
-
-const { verifyAccessToken } = require('../utils/jwt.util');
 const { isAccessTokenBlocked } = require('../cache/token.cache');
-const User = require('../models/User.model');
+const { AUTH_MESSAGES } = require('../constants/messages.constant');
 const ApiError = require('../core/ApiError');
 const asyncHandler = require('../core/asyncHandler');
-const { AUTH_MESSAGES } = require('../constants/messages.constant');
+const User = require('../models/User.model');
+const { verifyAccessToken } = require('../utils/jwt.util');
 
 /**
  * Extracts the Bearer token from the Authorization header or the access_token cookie.

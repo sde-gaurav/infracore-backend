@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Thin service base class.
  * Provides a uniform constructor signature (repository injection) and a hook

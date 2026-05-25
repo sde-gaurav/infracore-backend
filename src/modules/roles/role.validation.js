@@ -1,9 +1,7 @@
-'use strict';
-
 const Joi = require('joi');
 
-const { ROLES, PERMISSIONS } = require('../../constants/roles.constant');
 const { REGEX } = require('../../constants/regex.constant');
+const { ROLES, PERMISSIONS } = require('../../constants/roles.constant');
 
 const idParam = {
   params: Joi.object({
@@ -14,7 +12,8 @@ const idParam = {
 const createRole = {
   body: Joi.object({
     name: Joi.string().valid(...Object.values(ROLES)).required(),
-    displayName: Joi.string().trim().min(2).max(50).required(),
+    displayName: Joi.string().trim().min(2).max(50)
+      .required(),
     description: Joi.string().trim().max(200).optional(),
     permissions: Joi.array().items(Joi.string().valid(...Object.values(PERMISSIONS))).default([]),
   }),

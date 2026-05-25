@@ -1,5 +1,3 @@
-'use strict';
-
 const swaggerJsdoc = require('swagger-jsdoc');
 
 const config = require('./index');

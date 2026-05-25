@@ -1,5 +1,3 @@
-'use strict';
-
 const REGEX = Object.freeze({
   // At least 8 chars, one uppercase, one lowercase, one digit, one special char
   PASSWORD: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_\-#^])[A-Za-z\d@$!%*?&_\-#^]{8,}$/,

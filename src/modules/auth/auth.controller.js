@@ -1,10 +1,9 @@
-'use strict';
-
-const authService = require('./auth.service');
+const config = require('../../config');
+const { AUTH_MESSAGES } = require('../../constants/messages.constant');
 const ApiResponse = require('../../core/ApiResponse');
 const asyncHandler = require('../../core/asyncHandler');
-const { AUTH_MESSAGES } = require('../../constants/messages.constant');
-const config = require('../../config');
+
+const authService = require('./auth.service');
 
 const COOKIE_OPTIONS = {
   httpOnly: config.cookie.httpOnly,

@@ -1,14 +1,12 @@
-'use strict';
-
 const mongoose = require('mongoose');
 
 require('../config'); // load env
 const config = require('../config');
 const logger = require('../config/logger');
+const { ROLES, ROLE_PERMISSIONS } = require('../constants/roles.constant');
 const Role = require('../models/Role.model');
 const User = require('../models/User.model');
 const { hash } = require('../utils/bcrypt.util');
-const { ROLES, ROLE_PERMISSIONS } = require('../constants/roles.constant');
 
 const SYSTEM_ROLES = [
   { name: ROLES.SUPER_ADMIN, displayName: 'Super Admin', description: 'Full system access', permissions: ROLE_PERMISSIONS[ROLES.SUPER_ADMIN], isSystem: true },
@@ -22,10 +20,9 @@ const seed = async () => {
   logger.info('Seeder: connected to MongoDB');
 
   // Seed roles
-  for (const role of SYSTEM_ROLES) {
-    await Role.findOneAndUpdate({ name: role.name }, role, { upsert: true, new: true });
-    logger.info(`Seeded role: ${role.name}`);
-  }
+  await Promise.all(
+    SYSTEM_ROLES.map((role) => Role.findOneAndUpdate({ name: role.name }, role, { upsert: true, new: true }).then(() => { logger.info(`Seeded role: ${role.name}`); })),
+  );
 
   // Seed super admin user (only if none exists)
   const existingSuperAdmin = await User.findOne({ role: ROLES.SUPER_ADMIN });

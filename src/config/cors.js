@@ -1,5 +1,3 @@
-'use strict';
-
 const config = require('./index');
 
 const allowedOrigins = new Set(config.cors.origins.map((o) => o.trim()));

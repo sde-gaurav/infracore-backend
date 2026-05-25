@@ -1,12 +1,10 @@
-'use strict';
-
-const { getTransporter } = require('../config/email');
 const config = require('../config');
+const { getTransporter } = require('../config/email');
 const logger = require('../config/logger');
 
-const welcomeTemplate = require('./templates/welcome.template');
 const otpTemplate = require('./templates/otp.template');
 const passwordResetTemplate = require('./templates/passwordReset.template');
+const welcomeTemplate = require('./templates/welcome.template');
 
 const sendMail = async ({ to, subject, html, text }) => {
   try {

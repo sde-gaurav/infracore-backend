@@ -1,10 +1,9 @@
-'use strict';
-
 const cron = require('node-cron');
 
-const { cleanupExpiredTokens } = require('./cleanup.job');
-const logger = require('../config/logger');
 const config = require('../config');
+const logger = require('../config/logger');
+
+const { cleanupExpiredTokens } = require('./cleanup.job');
 
 const jobs = [];
 

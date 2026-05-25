@@ -1,9 +1,8 @@
-'use strict';
-
-const userService = require('./user.service');
+const { USER_MESSAGES } = require('../../constants/messages.constant');
 const ApiResponse = require('../../core/ApiResponse');
 const asyncHandler = require('../../core/asyncHandler');
-const { USER_MESSAGES } = require('../../constants/messages.constant');
+
+const userService = require('./user.service');
 
 /**
  * @swagger

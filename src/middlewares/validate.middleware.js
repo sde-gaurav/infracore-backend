@@ -1,5 +1,3 @@
-'use strict';
-
 const ApiError = require('../core/ApiError');
 
 const JOI_OPTIONS = {

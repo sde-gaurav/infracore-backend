@@ -1,9 +1,7 @@
-'use strict';
-
-const { verifyAccessToken } = require('../utils/jwt.util');
 const { isAccessTokenBlocked } = require('../cache/token.cache');
-const User = require('../models/User.model');
 const logger = require('../config/logger');
+const User = require('../models/User.model');
+const { verifyAccessToken } = require('../utils/jwt.util');
 
 /**
  * Socket.IO authentication middleware.
@@ -11,9 +9,8 @@ const logger = require('../config/logger');
  */
 const socketAuthMiddleware = async (socket, next) => {
   try {
-    const token =
-      socket.handshake.auth?.token ||
-      socket.handshake.headers?.authorization?.replace('Bearer ', '');
+    const token = socket.handshake.auth?.token
+      || socket.handshake.headers?.authorization?.replace('Bearer ', '');
 
     if (!token) {
       return next(new Error('Authentication required'));

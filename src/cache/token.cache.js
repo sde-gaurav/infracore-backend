@@ -1,5 +1,3 @@
-'use strict';
-
 const cache = require('./index');
 
 const REFRESH_TOKEN_PREFIX = 'rt:';
@@ -8,8 +6,7 @@ const TOKEN_FAMILY_PREFIX = 'rt:family:';
 
 const REFRESH_TTL = 7 * 24 * 3600; // 7 days
 
-const storeRefreshToken = (userId, tokenId, ttl = REFRESH_TTL) =>
-  cache.set(`${REFRESH_TOKEN_PREFIX}${userId}:${tokenId}`, true, ttl);
+const storeRefreshToken = (userId, tokenId, ttl = REFRESH_TTL) => cache.set(`${REFRESH_TOKEN_PREFIX}${userId}:${tokenId}`, true, ttl);
 
 const isRefreshTokenValid = async (userId, tokenId) => {
   const val = await cache.get(`${REFRESH_TOKEN_PREFIX}${userId}:${tokenId}`);

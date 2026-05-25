@@ -1,25 +1,21 @@
-'use strict';
-
 const capitalize = (str) => (str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '');
 
-const toTitleCase = (str) =>
-  str
-    ? str
-        .toLowerCase()
-        .split(' ')
-        .map((word) => capitalize(word))
-        .join(' ')
-    : '';
+const toTitleCase = (str) => (str
+  ? str
+    .toLowerCase()
+    .split(' ')
+    .map((word) => capitalize(word))
+    .join(' ')
+  : '');
 
-const toSlug = (str) =>
-  str
-    ? str
-        .toLowerCase()
-        .trim()
-        .replace(/[\s_]+/g, '-')
-        .replace(/[^\w-]+/g, '')
-        .replace(/--+/g, '-')
-    : '';
+const toSlug = (str) => (str
+  ? str
+    .toLowerCase()
+    .trim()
+    .replace(/[\s_]+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+  : '');
 
 const truncate = (str, maxLength = 100, suffix = '...') => {
   if (!str || str.length <= maxLength) return str;

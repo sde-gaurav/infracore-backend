@@ -1,12 +1,11 @@
-'use strict';
-
 const express = require('express');
+
+const { authenticate } = require('../../middlewares/auth.middleware');
+const { authLimiter } = require('../../middlewares/rateLimiter.middleware');
+const validate = require('../../middlewares/validate.middleware');
 
 const controller = require('./auth.controller');
 const validation = require('./auth.validation');
-const validate = require('../../middlewares/validate.middleware');
-const { authenticate } = require('../../middlewares/auth.middleware');
-const { authLimiter } = require('../../middlewares/rateLimiter.middleware');
 
 const router = express.Router();
 

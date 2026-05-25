@@ -1,11 +1,10 @@
-'use strict';
-
 const { Queue, Worker, QueueEvents } = require('bullmq');
 
-const { queueConfig, QUEUE_NAMES } = require('../config/queue');
-const { processEmailJob, EMAIL_JOB_TYPES } = require('./processors/email.processor');
-const logger = require('../config/logger');
 const config = require('../config');
+const logger = require('../config/logger');
+const { queueConfig, QUEUE_NAMES } = require('../config/queue');
+
+const { processEmailJob, EMAIL_JOB_TYPES } = require('./processors/email.processor');
 
 let queue;
 let worker;
@@ -50,32 +49,28 @@ const stopWorker = async () => {
 
 // ---- Job factories ----
 
-const addEmailVerificationJob = ({ user, token }) =>
-  getQueue().add(
-    EMAIL_JOB_TYPES.EMAIL_VERIFICATION,
-    { type: EMAIL_JOB_TYPES.EMAIL_VERIFICATION, payload: { user, token } },
-    { priority: 1 },
-  );
+const addEmailVerificationJob = ({ user, token }) => getQueue().add(
+  EMAIL_JOB_TYPES.EMAIL_VERIFICATION,
+  { type: EMAIL_JOB_TYPES.EMAIL_VERIFICATION, payload: { user, token } },
+  { priority: 1 },
+);
 
-const addPasswordResetJob = ({ user, token }) =>
-  getQueue().add(
-    EMAIL_JOB_TYPES.PASSWORD_RESET,
-    { type: EMAIL_JOB_TYPES.PASSWORD_RESET, payload: { user, token } },
-    { priority: 1 },
-  );
+const addPasswordResetJob = ({ user, token }) => getQueue().add(
+  EMAIL_JOB_TYPES.PASSWORD_RESET,
+  { type: EMAIL_JOB_TYPES.PASSWORD_RESET, payload: { user, token } },
+  { priority: 1 },
+);
 
-const addOTPJob = ({ user, otp }) =>
-  getQueue().add(
-    EMAIL_JOB_TYPES.OTP,
-    { type: EMAIL_JOB_TYPES.OTP, payload: { user, otp } },
-    { priority: 1 },
-  );
+const addOTPJob = ({ user, otp }) => getQueue().add(
+  EMAIL_JOB_TYPES.OTP,
+  { type: EMAIL_JOB_TYPES.OTP, payload: { user, otp } },
+  { priority: 1 },
+);
 
-const addWelcomeJob = ({ user, token }) =>
-  getQueue().add(
-    EMAIL_JOB_TYPES.WELCOME,
-    { type: EMAIL_JOB_TYPES.WELCOME, payload: { user, token } },
-    { delay: 2000, priority: 5 },
-  );
+const addWelcomeJob = ({ user, token }) => getQueue().add(
+  EMAIL_JOB_TYPES.WELCOME,
+  { type: EMAIL_JOB_TYPES.WELCOME, payload: { user, token } },
+  { delay: 2000, priority: 5 },
+);
 
 module.exports = { getQueue, startWorker, stopWorker, addEmailVerificationJob, addPasswordResetJob, addOTPJob, addWelcomeJob };

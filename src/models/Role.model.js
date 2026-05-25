@@ -1,5 +1,3 @@
-'use strict';
-
 const mongoose = require('mongoose');
 
 const { ROLES, PERMISSIONS } = require('../constants/roles.constant');

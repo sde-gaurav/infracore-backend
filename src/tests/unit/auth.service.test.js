@@ -1,9 +1,7 @@
-'use strict';
-
-const { connectTestDB, disconnectTestDB, clearTestDB } = require('../helpers/testHelpers');
 const { hash } = require('../../utils/bcrypt.util');
 const { generateOTP } = require('../../utils/otp.util');
-const { hashToken } = require('../../utils/token.util');
+// const { hashToken } = require('../../utils/token.util');
+const { connectTestDB, disconnectTestDB, clearTestDB } = require('../helpers/testHelpers');
 
 // Mock external side-effects
 jest.mock('../../queues/email.queue', () => ({

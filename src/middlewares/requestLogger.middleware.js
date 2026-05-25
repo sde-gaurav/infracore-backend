@@ -1,10 +1,8 @@
-'use strict';
-
 const morgan = require('morgan');
 const { v4: uuidv4 } = require('uuid');
 
-const logger = require('../config/logger');
 const config = require('../config');
+const logger = require('../config/logger');
 
 // Attach a unique request ID to every incoming request
 const requestId = (req, res, next) => {

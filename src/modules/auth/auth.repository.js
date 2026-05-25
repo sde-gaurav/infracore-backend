@@ -1,8 +1,6 @@
-'use strict';
-
 const BaseRepository = require('../../core/BaseRepository');
-const User = require('../../models/User.model');
 const Token = require('../../models/Token.model');
+const User = require('../../models/User.model');
 
 class AuthRepository extends BaseRepository {
   constructor() {

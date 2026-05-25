@@ -1,12 +1,11 @@
-'use strict';
-
 const path = require('path');
 
 // Load environment file based on NODE_ENV before anything else
 const dotenv = require('dotenv');
+
 const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
 dotenv.config({ path: path.resolve(process.cwd(), envFile) });
-// Fallback to .env for CI / Docker secrets 
+// Fallback to .env for CI / Docker secrets
 dotenv.config({ path: path.resolve(process.cwd(), '.env'), override: false });
 
 const config = {

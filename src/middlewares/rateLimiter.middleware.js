@@ -1,12 +1,10 @@
-'use strict';
-
 const rateLimit = require('express-rate-limit');
 const RedisStore = require('rate-limit-redis');
 
 const config = require('../config');
-const { getClient } = require('../database/redis');
 const { HTTP_STATUS } = require('../constants/http.constant');
 const { GENERIC_MESSAGES } = require('../constants/messages.constant');
+const { getClient } = require('../database/redis');
 
 const buildRateLimiter = ({ windowMs, max, keyPrefix = 'rl' } = {}) => {
   const limiterConfig = {

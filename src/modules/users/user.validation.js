@@ -1,14 +1,13 @@
-'use strict';
-
 const Joi = require('joi');
 
-const { ROLES } = require('../../constants/roles.constant');
 const { REGEX } = require('../../constants/regex.constant');
+const { ROLES } = require('../../constants/roles.constant');
 
 const getAll = {
   query: Joi.object({
     page: Joi.number().integer().min(1).default(1),
-    limit: Joi.number().integer().min(1).max(100).default(10),
+    limit: Joi.number().integer().min(1).max(100)
+      .default(10),
     sort: Joi.string().optional(),
     fields: Joi.string().optional(),
     search: Joi.string().optional(),

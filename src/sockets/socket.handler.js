@@ -1,5 +1,3 @@
-'use strict';
-
 const logger = require('../config/logger');
 
 const registerSocketHandlers = (io, socket) => {

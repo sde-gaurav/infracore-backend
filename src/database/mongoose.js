@@ -1,5 +1,3 @@
-'use strict';
-
 const mongoose = require('mongoose');
 
 const config = require('../config');
@@ -32,7 +30,7 @@ const connect = async () => {
     }
 
     logger.info(`Retrying MongoDB connection in ${RETRY_DELAY_MS / 1000}s...`);
-    await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
+    await new Promise((resolve) => { setTimeout(resolve, RETRY_DELAY_MS); });
     return connect();
   }
 };

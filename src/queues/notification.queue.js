@@ -1,11 +1,10 @@
-'use strict';
-
 const { Queue, Worker } = require('bullmq');
 
-const { queueConfig, QUEUE_NAMES } = require('../config/queue');
-const { processNotificationJob, NOTIFICATION_JOB_TYPES } = require('./processors/notification.processor');
-const logger = require('../config/logger');
 const config = require('../config');
+const logger = require('../config/logger');
+const { queueConfig, QUEUE_NAMES } = require('../config/queue');
+
+const { processNotificationJob, NOTIFICATION_JOB_TYPES } = require('./processors/notification.processor');
 
 let queue;
 let worker;
@@ -42,10 +41,8 @@ const stopWorker = async () => {
   }
 };
 
-const addPushNotification = (userId, data) =>
-  getQueue().add(NOTIFICATION_JOB_TYPES.PUSH, { type: NOTIFICATION_JOB_TYPES.PUSH, payload: { userId, ...data } });
+const addPushNotification = (userId, data) => getQueue().add(NOTIFICATION_JOB_TYPES.PUSH, { type: NOTIFICATION_JOB_TYPES.PUSH, payload: { userId, ...data } });
 
-const addInAppNotification = (userId, data) =>
-  getQueue().add(NOTIFICATION_JOB_TYPES.IN_APP, { type: NOTIFICATION_JOB_TYPES.IN_APP, payload: { userId, ...data } });
+const addInAppNotification = (userId, data) => getQueue().add(NOTIFICATION_JOB_TYPES.IN_APP, { type: NOTIFICATION_JOB_TYPES.IN_APP, payload: { userId, ...data } });
 
 module.exports = { getQueue, startWorker, stopWorker, addPushNotification, addInAppNotification };

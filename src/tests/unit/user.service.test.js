@@ -1,5 +1,3 @@
-'use strict';
-
 const { connectTestDB, disconnectTestDB, clearTestDB, createTestUser, createAdminUser } = require('../helpers/testHelpers');
 
 jest.mock('../../cache/user.cache', () => ({

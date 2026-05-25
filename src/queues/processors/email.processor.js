@@ -1,7 +1,5 @@
-'use strict';
-
-const { sendWelcomeEmail, sendOTPEmail, sendPasswordResetEmail } = require('../../emails/mailer');
 const logger = require('../../config/logger');
+const { sendWelcomeEmail, sendOTPEmail, sendPasswordResetEmail } = require('../../emails/mailer');
 
 const EMAIL_JOB_TYPES = Object.freeze({
   WELCOME: 'welcome',

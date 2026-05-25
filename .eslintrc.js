@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   env: {
     node: true,
@@ -18,8 +16,8 @@ module.exports = {
     'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc' } }],
 
     // Disable rules that clash with our project conventions
-    'no-underscore-dangle': ['error', { allow: ['_id', '__v', '_doc'] }],
-    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['req', 'res', 'next', 'acc', 'accumulator'] }],
+    'no-underscore-dangle': ['error', { allow: ['_id', '__v', '_doc', '_page', '_limit'] }],
+    'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['req', 'res', 'next', 'acc', 'accumulator', 'socket'] }],
     'class-methods-use-this': 'off',
     'no-console': 'error',
 
@@ -49,9 +47,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/tests/**/*.test.js'],
+      files: ['src/tests/**/*.test.js', 'src/tests/**/*.js'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'import/order': 'off',
+        'global-require': 'off',
       },
     },
   ],

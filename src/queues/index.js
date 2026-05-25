@@ -1,8 +1,7 @@
-'use strict';
+const logger = require('../config/logger');
 
 const emailQueue = require('./email.queue');
 const notificationQueue = require('./notification.queue');
-const logger = require('../config/logger');
 
 const startAllWorkers = () => {
   emailQueue.startWorker();

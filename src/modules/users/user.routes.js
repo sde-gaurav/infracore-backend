@@ -1,15 +1,14 @@
-'use strict';
-
 const express = require('express');
 
-const controller = require('./user.controller');
-const validation = require('./user.validation');
-const validate = require('../../middlewares/validate.middleware');
+const { ROLES } = require('../../constants/roles.constant');
+const { PERMISSIONS } = require('../../constants/roles.constant');
 const { authenticate } = require('../../middlewares/auth.middleware');
 const { authorizeRoles, requirePermission, authorizeOwnerOrRole } = require('../../middlewares/permission.middleware');
 const { avatarUpload } = require('../../middlewares/upload.middleware');
-const { ROLES } = require('../../constants/roles.constant');
-const { PERMISSIONS } = require('../../constants/roles.constant');
+const validate = require('../../middlewares/validate.middleware');
+
+const controller = require('./user.controller');
+const validation = require('./user.validation');
 
 const router = express.Router();
 

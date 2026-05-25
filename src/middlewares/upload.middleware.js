@@ -1,11 +1,10 @@
-'use strict';
-
 const path = require('path');
+
 const multer = require('multer');
 
 const config = require('../config');
-const { generateUniqueFilename, ensureDirectoryExists } = require('../helpers/file.helper');
 const ApiError = require('../core/ApiError');
+const { generateUniqueFilename, ensureDirectoryExists } = require('../helpers/file.helper');
 
 const buildStorage = (destination) => {
   const uploadDir = destination || path.resolve(config.upload.path);
@@ -31,12 +30,11 @@ const buildFileFilter = (allowedTypes) => (req, file, cb) => {
  * @param {number}   options.maxSize     — max file size in bytes
  * @param {string[]} options.allowedTypes — allowed MIME types
  */
-const createUploader = ({ destination, maxSize, allowedTypes } = {}) =>
-  multer({
-    storage: buildStorage(destination),
-    limits: { fileSize: maxSize || config.upload.maxFileSize },
-    fileFilter: buildFileFilter(allowedTypes),
-  });
+const createUploader = ({ destination, maxSize, allowedTypes } = {}) => multer({
+  storage: buildStorage(destination),
+  limits: { fileSize: maxSize || config.upload.maxFileSize },
+  fileFilter: buildFileFilter(allowedTypes),
+});
 
 // Pre-built uploaders for common use-cases
 const avatarUpload = createUploader({ allowedTypes: ['image/jpeg', 'image/png', 'image/webp'] });

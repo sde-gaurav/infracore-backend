@@ -1,5 +1,3 @@
-'use strict';
-
 const AUTH_MESSAGES = Object.freeze({
   LOGIN_SUCCESS: 'Logged in successfully',
   LOGOUT_SUCCESS: 'Logged out successfully',

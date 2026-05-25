@@ -1,11 +1,9 @@
-'use strict';
-
 const mongoose = require('mongoose');
 
-const ApiError = require('../core/ApiError');
-const logger = require('../config/logger');
 const config = require('../config');
+const logger = require('../config/logger');
 const { HTTP_STATUS } = require('../constants/http.constant');
+const ApiError = require('../core/ApiError');
 
 /**
  * Translates well-known library errors into ApiError instances

@@ -1,7 +1,6 @@
-'use strict';
+const logger = require('../config/logger');
 
 const emitter = require('./index');
-const logger = require('../config/logger');
 
 const AUTH_EVENTS = Object.freeze({
   LOGIN_FAILED: 'auth:login_failed',

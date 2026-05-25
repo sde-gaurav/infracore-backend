@@ -1,5 +1,3 @@
-'use strict';
-
 const Joi = require('joi');
 
 const { REGEX } = require('../../constants/regex.constant');
@@ -16,8 +14,10 @@ const passwordSchema = Joi.string()
 
 const register = {
   body: Joi.object({
-    firstName: Joi.string().trim().min(2).max(50).required(),
-    lastName: Joi.string().trim().min(2).max(50).required(),
+    firstName: Joi.string().trim().min(2).max(50)
+      .required(),
+    lastName: Joi.string().trim().min(2).max(50)
+      .required(),
     email: Joi.string().email({ tlds: { allow: false } }).lowercase().required(),
     password: passwordSchema.required(),
     confirmPassword: Joi.string().valid(Joi.ref('password')).required().messages({

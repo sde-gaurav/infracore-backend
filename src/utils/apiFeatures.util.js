@@ -1,5 +1,3 @@
-'use strict';
-
 const { parseSort, parseFieldSelection } = require('./pagination.util');
 
 /**

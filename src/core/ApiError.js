@@ -1,5 +1,3 @@
-'use strict';
-
 const { HTTP_STATUS } = require('../constants/http.constant');
 
 /**

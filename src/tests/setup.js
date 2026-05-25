@@ -1,5 +1,3 @@
-'use strict';
-
 // Must run before config is loaded
 process.env.NODE_ENV = 'test';
 process.env.JWT_ACCESS_SECRET = 'test-access-secret-min-32-characters!!';

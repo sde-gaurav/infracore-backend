@@ -1,5 +1,3 @@
-'use strict';
-
 const BaseRepository = require('../../core/BaseRepository');
 const User = require('../../models/User.model');
 

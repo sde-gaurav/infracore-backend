@@ -1,10 +1,9 @@
-'use strict';
+const { getUserFromCache, setUserInCache, deleteUserFromCache, invalidateUserListCache } = require('../../cache/user.cache');
+const { USER_MESSAGES } = require('../../constants/messages.constant');
+const ApiError = require('../../core/ApiError');
+const userEvents = require('../../events/user.event');
 
 const userRepository = require('./user.repository');
-const { getUserFromCache, setUserInCache, deleteUserFromCache, invalidateUserListCache } = require('../../cache/user.cache');
-const ApiError = require('../../core/ApiError');
-const { USER_MESSAGES } = require('../../constants/messages.constant');
-const userEvents = require('../../events/user.event');
 
 const getUsers = async (queryParams) => {
   const { page, limit, sort, search, ...filters } = queryParams;

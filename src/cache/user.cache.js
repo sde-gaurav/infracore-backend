@@ -1,5 +1,3 @@
-'use strict';
-
 const cache = require('./index');
 
 const USER_TTL = 900; // 15 min
